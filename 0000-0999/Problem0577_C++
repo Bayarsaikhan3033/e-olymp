@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int n, sum = 0, i, tmp; cin >> n;
+	for (i = 4; sum != n; i++)
+	{
+		tmp = i;
+		while (tmp)
+		{
+			sum++;
+			tmp /= 10;
+		}
+	}
+	cout << i - 1 << endl;
+}

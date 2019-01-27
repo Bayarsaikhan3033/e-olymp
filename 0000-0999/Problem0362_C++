@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	double tmp, MAX, MIN;
+	cin >> tmp;
+	MAX = MIN = tmp;
+	while (cin)
+	{
+		cin >> tmp;
+		if (cin)
+		{
+			if (tmp > MAX) MAX = tmp;
+			if (tmp < MIN) MIN = tmp;
+		}
+	}
+	cout << fixed << MAX - MIN << endl;
+}

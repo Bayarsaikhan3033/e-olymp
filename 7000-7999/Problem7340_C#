@@ -1,0 +1,18 @@
+using System;
+
+namespace Problem7340
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            string soz = Console.ReadLine();
+            int say = 0;
+            for (char i = 'A'; i <= 'Z'; i++)
+            {
+                if (soz.Contains(i.ToString())) say++;
+            }
+            Console.WriteLine(say);
+        }
+    }
+}

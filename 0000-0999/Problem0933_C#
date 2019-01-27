@@ -1,0 +1,21 @@
+using System;
+
+namespace Problem933
+{
+    internal class Program
+    {
+
+        public static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            if (n < 0) n = -n;
+            int cem = 0;
+            while (n > 0)
+            {
+                cem = cem + n%10;
+                n = n/10;
+            }
+            Console.WriteLine(cem);
+        }
+    }
+}

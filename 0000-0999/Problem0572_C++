@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	long n, d = 2, cnt; cin >> n;
+	bool star = false;
+	while (n)
+	{
+		if (n % d == 0)
+		{
+			cnt = 0;
+			while (n % d == 0)
+			{
+				cnt++;
+				n /= d;
+			}
+			if (star) cout << "*";
+			cout << d;
+			if (cnt > 1) cout << "^" << cnt;
+			star = true;
+		}
+		d++;
+		if (d*d > n && n != 1)
+		{
+			if (star) cout << "*";
+			cout << n;
+			n = 0;
+		}
+		if (n == 1) n = 0;
+	}
+	cout << endl;
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+const int MAXN = 1001;
+const int MAXINT = 2000000000;
+
+int n, c, cost[MAXN][MAXN];
+vector <int> G[MAXN];
+
+int dfs(int now, int fa){
+	if (G[now].size() == 1 && G[now][0] == fa) return MAXINT;
+	int tmp = 0;
+	for (int i = 0; i < (int)G[now].size(); i++){
+		if (G[now][i] == fa) continue;
+		tmp = tmp + min(dfs(G[now][i], now), cost[now][G[now][i]]);
+	}
+	return tmp;
+}
+
+int main(){
+	while (scanf("%d%d", &n, &c) == 2){
+		for (int i = 1; i <= n; i++) G[i].clear();
+		for (int i = 0; i < n - 1; i++){
+			int x, y, z;
+			scanf("%d%d%d", &x, &y, &z);
+			cost[x][y] = z;
+			cost[y][x] = z;
+			G[x].push_back(y);
+			G[y].push_back(x);
+		}
+		printf("%d\n", dfs(c, -1));
+	}
+	return 0;
+}

@@ -1,0 +1,86 @@
+#include <iostream>
+
+using namespace std;
+
+#define lson l, m, rt << 1
+#define rson m + 1, r, rt << 1 | 1
+
+const int maxn = 65536;
+
+int flag, s, ans[maxn << 2] = { 0 };
+
+int sign(int x)
+{
+	if (x > 0) return 1;
+	if (x < 0) return -1;
+	return 0;
+}
+
+void PushUP(int rt) { ans[rt] = ans[rt << 1] * ans[rt << 1 | 1]; }
+
+void build(int l, int r, int rt) {
+	if (l == r) {
+		int x;
+		scanf("%d", &x);
+		ans[rt] = sign(x);
+		return;
+	}
+	int m = (l + r) >> 1;
+	build(lson);
+	build(rson);
+	PushUP(rt);
+}
+
+void update(int p, int x, int l, int r, int rt) {
+	if (l == r) {
+		if (sign(ans[rt]) != sign(x))
+		{
+			flag = 1;
+			ans[rt] = sign(x);
+		}
+		return;
+	}
+	int m = (l + r) >> 1;
+	if (p <= m) update(p, x, lson);
+	else update(p, x, rson);
+	if (flag)PushUP(rt);
+}
+
+void query(int L, int R, int l, int r, int rt) {
+	if (L <= l && r <= R) {
+		s *= ans[rt];
+		return;
+	}
+	int m = (l + r) >> 1;
+	if (L <= m && s != 0) query(L, R, lson);
+	if (R > m && s != 0) query(L, R, rson);
+}
+
+int main() {
+	int n, m;
+	while (~scanf("%d%d", &n, &m))
+	{
+		build(1, n, 1);
+		while (m--)
+		{
+			char op[2];
+			int a, b;
+			scanf("%s%d%d", op, &a, &b);
+			if (op[0] == 'P')
+			{
+				s = 1;
+				query(a, b, 1, n, 1);
+				if (s == 0) printf("0");
+				else if (s == 1) printf("+");
+				else printf("-");
+			}
+			else
+			{
+				flag = 0;
+				update(a, b, 1, n, 1);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}

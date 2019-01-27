@@ -1,0 +1,13 @@
+using System;
+
+namespace Problem7330
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine(n - Math.Ceiling(n/3.0));
+        }
+    }
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+string SUM(string a, string b)
+{
+	for (int i = 0; i < a.length() / 2; i++) swap(a[i], a[a.length() - i - 1]);
+	for (int i = 0; i < b.length() / 2; i++) swap(b[i], b[b.length() - i - 1]);
+	int carry = 0;
+	for (int i = 0; i < max(a.length(), b.length()) || carry; i++)
+	{
+		if (i == a.length()) a += '0';
+		a[i] += carry + (i < b.length() ? b[i] - 48 : 0);
+		carry = a[i] > '1';
+		if (carry) a[i] -= 2;
+	}
+	for (int i = 0; i < a.length() / 2; i++) swap(a[i], a[a.length() - i - 1]);
+	return a;
+}
+
+int main()
+{
+	string n, m; cin >> n >> m;
+	cout << SUM(n, m) << endl;
+}

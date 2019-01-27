@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	long tmp, n;
+	string s;
+	while (cin)
+	{
+		cin >> n;
+		if (cin)
+		{
+			tmp = n;
+			s = "";
+			if (tmp == 0) s = "10";
+			else if (tmp == 1) s = "1";
+			else
+			{
+				for (int i = 9; i > 1; i--)
+					while (tmp % i == 0)
+					{
+						s += i + 48;
+						tmp /= i;
+					}
+				if (tmp != 1) s = "-1";
+				else for (int j = 0; j < s.length() / 2; j++) swap(s[j], s[s.length() - j - 1]);
+			}
+			cout << s << endl;
+		}
+	}
+}

@@ -1,0 +1,12 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+#define PI 3.1415926535897932384626433832795
+
+int main()
+{
+	double R, r, H; cin >> R >> r >> H;
+	cout << fixed << PI*R*R + PI*r*r + hypot(H, R - r)*(R + r)*PI << endl;
+}

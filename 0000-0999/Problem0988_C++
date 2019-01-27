@@ -1,0 +1,19 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+	int n, d[1000], mas[1000], ans;
+	cin >> n;
+	for (int i = 0; i < n; i++) cin >> mas[i];
+	for (int i = 0; i < n; i++)
+	{
+		d[i] = 1;
+		for (int j = 0; j < i; j++) if (mas[j] < mas[i]) d[i] = max(d[i], d[j] + 1);
+	}
+	ans = d[0];
+	for (int i = 0; i < n; i++) ans = max(ans, d[i]);
+	cout << ans << endl;
+}

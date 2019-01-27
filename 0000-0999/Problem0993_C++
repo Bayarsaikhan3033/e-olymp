@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int n, m, x, y, mas[100]; cin >> n >> m;
+	for (int i = 0; i < n; i++) mas[i] = 0;
+	for (int i = 0; i < m; i++)
+	{
+		cin >> x >> y;
+		mas[x - 1]++; mas[y - 1]++;
+	}
+	cout << mas[0];
+	for (int i = 1; i < n; i++) cout << " " << mas[i];
+	cout << endl;
+}

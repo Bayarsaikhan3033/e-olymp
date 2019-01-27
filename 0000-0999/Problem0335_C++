@@ -1,0 +1,16 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+int main() {
+	int n, t;
+	scanf("%d", &t);
+	while (t--)
+	{
+		scanf("%d", &n);
+		int r = (int)sqrt(1.0*n);
+		printf("%d\n", r*r == n);
+	}
+	return 0;
+}

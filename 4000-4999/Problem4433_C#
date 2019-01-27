@@ -1,0 +1,26 @@
+using System;
+
+namespace Problem4433
+{
+    internal static class Program
+    {
+        public static void Main(string[] args)
+        {
+            string setir = Console.ReadLine();
+            if (setir.Length%2 == 1)
+            {
+                Console.WriteLine("NO");
+            }
+            else
+            {
+                while (setir.Contains("()") || setir.Contains("[]") || setir.Contains("{}"))
+                {
+                    while (setir.Contains("()")) setir = setir.Replace("()", "");
+                    while (setir.Contains("[]")) setir = setir.Replace("[]", "");
+                    while (setir.Contains("{}")) setir = setir.Replace("{}", "");
+                }
+                Console.WriteLine(setir.Length == 0 ? "YES" : "NO");
+            }
+        }
+    }
+}
